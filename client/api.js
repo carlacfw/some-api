@@ -6,6 +6,7 @@ export function seeAsteroid (url, callback) {
   request
   .get(url)
   .query({api_key: '3EqkBoL9RHKZtMIby3gJn8tNyJB7rmrilIu4iY6B'})
+  // api key is the key that I reveived from NASA to be able to use they api
     .end((err, res) => {
       if (err) {
         callback(err)

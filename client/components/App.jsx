@@ -15,19 +15,21 @@ export default class App extends React.Component {
     console.log({err, data});
     this.setState({err, currentData: data, url: data.links.prev || this.state.url})
     //currentData is the data from the API
-    //url has data and links inside the data. one of those links is the prev asteroi
+    //url has data and links inside the data. one of those links is the prev asteroid which shows the lasts asteroids that came closer to the earth
   }
   getNext() {
     seeAsteroid(this.state.url, this.receiveData.bind(this))
-  }
+  } //this function gets the information from the api and makes it useful
 
   renderNearEarthObject(object, key) {
     console.log({object});
     return (
       <div key={key}>
-        <h1>Object {key}:</h1>
+        <h1>Object: {key}</h1>
         <h3>Name: {object.name}</h3>
-      </div>
+        <h3>Potentially hazardous: {object.is_potentially_hazardous_asteroid}</h3>
+
+        </div>
     )
   }
   renderDetails(data) {
@@ -40,13 +42,14 @@ export default class App extends React.Component {
       </div>
     )
   }
+  /*renderDetais, takes data (from the api) ...to be continued*/
   render() {
     let {currentData} = this.state
 
     return (
       <div>
         <h1>{this.state.err}</h1>
-        <h1>React development has begun!</h1>
+        <h1>List of Asteroids based on their closest approach date to Earth.</h1>
         <button onClick={this.getNext.bind(this)}>Next</button>
         {currentData && this.renderDetails(currentData)}
 
